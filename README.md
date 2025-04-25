@@ -11,4 +11,5 @@ These instructions assume that the user already has Python installed on their re
 to install the required packages.
 2. In the SharedResources folder, run the command `python manage.py runserver`
 3. Navigate to the URL `http://127.0.0.1:8000/`
-4. 
+4. Login as admin with the username `sradmin` and password `sradmin`
+5. Register a new user, then login as that user to view the website from a tenant/owner perspective
