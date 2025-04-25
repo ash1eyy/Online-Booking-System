@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leasing Requests</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1 class="p2">Leasing Requests</h1>
+    <button class="backButton" onclick="location.href = '/resource_listings'"><</button>
+    <br>
+    <br>
+    {% for rq in requests %}
+    <div class="center-container6">
+        <div class="viewListingDetailsLR">
+            <img src="/media/{{rq.resourceLeased.resourceImage}}" class="table-image6">
+
+            <div class="detailsContainerLR">
+                <h1 class="p2LR">{{rq.resourceLeased.resourceName}}</h1>
+                <p class="dateUploaded">Requested by: {{rq.leasedBy}}</p>
+                <label>From {{rq.startDate}} to {{rq.endDate}}</label>
+                <br>
+                <p>Description:<br><i>{{rq.requestDesc}}</i></p>
+            </div>
+
+            <div class="button-container2">
+                <button class="button2LR" id="approveButton2" onclick="location.href = '{% url 'approve_request' rq.pk %}'">Approve</button>
+                <button class="button2LR" id="rejectButton2" onclick="location.href = '{% url 'reject_request' rq.pk %}'">Reject</button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Listing</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1 class="p2">Resource Listing</h1>
+    <button class="backButton" onclick="location.href = '/dashboard'"><</button>
+    <br>
+    <br>
+    <div class="scrollable">
+    <table style="width:50%" align="center" >
+        <tr>
+            {% for listing in listings %}
+            <th align="center" class="example example-cover" onclick="location.href = '{% url 'listing_details' listing.pk %}'">
+                <img src="/media/{{listing.resourceImage}}" class="table-image">
+                <h4 class="resourceInformation">{{listing.resourceName}}</h4>
+                <div class="resourceDetails">
+                    <p>Uploaded {{listing.uploadDate}}</p>
+                </div>
+            </th>
+            {% if not forloop.last and forloop.counter|divisibleby:3 %}
+            </tr>
+            <tr>
+            {% endif %}
+            {% endfor %}
+        </tr>
+    </table>
+    </div>
+
+    <br>
+    <div align="center">
+        {% if not user.is_superuser %}
+            <button class="button" onclick="location.href = '/my_requests'">My Requests</button>
+        {% endif %}
+
+        {% if user.is_superuser or user.owner is not None %}
+            <button class="button" onclick="location.href = '/leasing_requests'">Leasing Requests</button>
+
+            <button class="button" onclick="location.href = '/add_listing'">Add Listings</button>
+        
+            <button class="button" onclick="location.href = '/my_listings'">My Listings</button>
+        {% endif %}
+    </div>
+</body>
+</html>
