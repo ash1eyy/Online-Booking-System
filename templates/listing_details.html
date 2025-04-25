@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listing Details</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1 class="p2">View Listing Details</h1>
+    <button class="backButton" onclick="location.href = '/resource_listings'"><</button>
+    <br>
+    <br>
+    <div class="center-containerLD">
+        <div class="viewListingDetailsLD">
+            <div class="detailsContainerLD">
+                <h1 class="p2LD">{{listing.resourceName}}</h1>
+
+                <label>Resource Type: {{listing.resourceType}}</p>
+                <label class="uploadedBy">Uploaded By: {{listing.uploadedBy}}</p>
+                <label class="dateUploaded">Date Uploaded: {{listing.uploadDate}}</p>
+
+                <label>Description: {{listing.resourceDesc}}</label>
+            </div>
+
+            <img src="/media/{{listing.resourceImage}}" class="table-image3">
+        </div>
+    </div>
+
+    <div align="center">
+        {% if listing.uploadedBy != user.username and not user.is_superuser %}
+            <button class="button" onclick="location.href = '{% url 'apply_to_lease' listing.pk %}'">Apply to lease</button>
+        {% elif listing.uploadedBy != "Admin" and user.is_superuser %}
+            <button class="button" onclick="location.href = '{% url 'remove_listing' listing.pk %}'">Remove listing</button>
+        {% endif %}
+    </div>
+</body>
+</html>

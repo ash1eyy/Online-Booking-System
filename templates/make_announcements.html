@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcements</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1 class="p2">Make Announcements</h1>
+    <button class="backButton" onclick="location.href = '/announcements'"><</button>
+
+    <form method="POST" action="make_announcements">
+        {% csrf_token %}
+        <table align="center">
+            <tr><td align="right">
+                <label>Announcement Title: </label>             
+            <td align="left">
+                <input type="text" class="rcorners" name="announcetitle"><br>
+            <tr><td align="right">
+                <label>Announcement Description: </label>             
+            <td align="left">
+                <textarea class="rcorners descriptionInputBox" name="announcedesc"></textarea><br>
+        </table>
+
+        <div id="submitButton">
+            <button class="button" type="submit">Add announcement</input>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Report</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1 class="p2">Make Report</h1>
+    <button class="backButton" onclick="location.href = '/incident_reports'"><</button>
+    
+    {% for message in messages %}
+    <h3>{{message}}</h3>
+    {% endfor %}
+
+    <form method="POST" action="make_report">
+        {% csrf_token %}
+        <table align="center">
+            <tr><td align="right">
+                <label>Report Title: </label>             
+            <td align="left">
+                <input type="text" name="reporttitle" class="rcorners" required><br>
+            <tr><td align="right">
+                <label>Affected Resource: </label>             
+            <td align="left">
+                <input type="text" name="resource" class="rcorners" required><br>
+            <tr><td align="right">
+                <label>Resource Owner: </label>             
+            <td align="left">
+                <input type="text" name="resourceowner" class="rcorners" required><br>
+            <tr><td align="right">
+                <label>Incident Date: </label>             
+            <td align="left">
+                <input type="date" name="incidentdate" class="rcorners" required><br>
+            <tr><td align="right">
+                <label>Report Description: </label>             
+            <td align="left">
+                <textarea name="reportdesc" class="reportDescriptionInputBox" required></textarea><br>
+        </table>
+
+        <div id="submitButton">
+            <button class="button" type="submit">Submit Report</button>
+        </div>
+    </form>
+</body>
+</html>

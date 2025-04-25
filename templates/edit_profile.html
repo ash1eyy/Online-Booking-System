@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1 class="p2">Edit Profile</h1>
+    <button class="backButton" onclick="location.href= '{% url 'view_profile' user.pk %}'">&lt;</button>
+    
+    <form method="POST" action="/user/{{user.pk}}/edit" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="center-container4">
+        <div class="detailsContainerEP">
+            <div class="form-group">
+                <label for="firstname">First Name:</label><input type="text" name="firstname" class="rcorners" value="{{user.firstname}}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="lastname">Last Name:</label><input type="text" name="lastname" class="rcorners" value="{{user.lastname}}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="unitnumber">Unit Number:</label>
+                <input type="text" name="block" id="blocknum" value="{{user.tenant.unitNumber|slice:"0:1"}}" class="rcorners" maxlength="1" required> -
+                <input type="text" name="floor" id="floornum" value="{{user.tenant.unitNumber|slice:"2:4"}}" class="rcorners" maxlength="2" required> -
+                <input type="text" name="unit" id="floornum" value="{{user.tenant.unitNumber|slice:"5:7"}}" class="rcorners" maxlength="2" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Username:</label><input type="text" name="username" class="rcorners" value="{{user.username}}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                {% if user.gender %}
+                    <select id="gender" name="gender" value="{{user.gender}}" class="rcorners" readonly>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>
+                {% else %}
+                    <select id="gender" name="gender" value="{{user.gender}}" class="rcorners" required>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="birthdate">Birth Date:</label><input type="date" name="birthdate" value="{{user.birthDate|date:'Y-m-d'}}" id="birthdate" class="rcorners" required>
+            </div>
+            <div class="form-group">
+                <label for="icnumber">I/C No.:</label>
+                {% if user.icNumber %}
+                    <input type="text" name="icbirth" value="{{user.icNumber|slice:"0:6"}}" id="icnumber" class="rcorners" maxlength="6" required> -
+                    <input type="text" name="iclocation" value="{{user.icNumber|slice:"7:9"}}" id="iclocation" class="rcorners" maxlength="2" required> -
+                    <input type="text" name="iclast4" value="{{user.icNumber|slice:"10:14"}}" id="iclast4" class="rcorners" maxlength="4" required>
+                {% else %}
+                    <input type="text" name="icbirth" id="icnumber" class="rcorners" maxlength="6" required> -
+                    <input type="text" name="iclocation" id="iclocation" class="rcorners" maxlength="2" required> -
+                    <input type="text" name="iclast4" id="iclast4" class="rcorners" maxlength="4" required>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label><input type="text" name="email" class="rcorners" value="{{user.email}}" required>
+            </div>
+            <div class="form-group">
+                <label for="profilepic">Profile Picture:</label><input type="file" id="image" name="profilepic">
+            </div>
+        </div>
+        <img src="/media/{{user.profilePic}}" class="table-imageEP" alt="Profile Image" >         
+    </div>
+    <div id="saveProfileButton">
+        <button class="button" type="submit">Update Profile</button>
+    </div>
+    </form>
+</body>
+</html>

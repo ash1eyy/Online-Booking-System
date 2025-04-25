@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcement Details</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1 class="p2">Announcement Details</h1>
+    <button class="backButton" onclick="location.href = '/announcements'"><</button>
+
+    <div class="announcementContainer2">
+        <b><h2 class="announcementTitle">{{announcement.announceTitle}}</h2></b>
+        <p>{{announcement.announceDate}}</p>
+    </div>
+    <br>
+    <p class="announcementDescription">
+        {{announcement.announceDesc}}
+    </p>
+</body>
+</html>

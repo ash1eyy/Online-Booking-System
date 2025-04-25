@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcements</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1 class="p2">Announcements</h1>
+    <button class="backButton" onclick="location.href = '/dashboard'"><</button>
+
+    <div class="center-container">
+        {% if user.is_superuser %}
+        <div id="makeAnnouncementButton">
+            <button class="button3" onclick="location.href = '/make_announcements'">Make Announcements</button>
+        </div>
+        {% endif %}
+    
+        <div class="makeAnnouncements">
+            {% for announcement in announcements %}
+            <div class="makeAnnouncementContainer" onclick="location.href = '{% url 'announcement_details' announcement.pk %}'">
+                <div class="announcement">
+                    <p>{{announcement.announceTitle}}</p>
+                    <p>{{announcement.announceDate}}</p>
+                </div>
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+    </div>
+       
+</body>
+</html>
