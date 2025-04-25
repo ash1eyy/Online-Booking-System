@@ -1,4 +1,6 @@
 # Online Booking System
+![Alt Text](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdXpnOXh4ajc1ZjJxODQwa3B4b3ltY2pqampocGJ1eDQzMnhvZ2Q3ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ryCI3QMBjNZAQBsRf8/giphy.gif)
+
 An online booking system that allows the management and residents of an apartment to book or lease amenities such as the swimming pool and gym, or even items like ladders and carts.
 
 ## Instructions
